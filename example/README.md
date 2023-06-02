@@ -1,3 +1,3 @@
-# recaptcha_enterprise_example
+# example
 
-Demonstrates how to use the recaptcha_enterprise plugin.
+A new Flutter project.

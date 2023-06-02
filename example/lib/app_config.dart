@@ -14,10 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import 'dart:convert';
-
-import 'package:flutter/services.dart';
-
 class AppConfig {
   final String androidSiteKey;
   final String iosSiteKey;
@@ -27,12 +23,19 @@ class AppConfig {
   static Future<AppConfig> forEnvironment(String? env) async {
     env = env ?? 'dev';
 
-    final contents = await rootBundle.loadString(
-      'assets/config/$env.json',
-    );
+    // final contents = await rootBundle.loadString(
+    //   'assets/config/$env.json',
+    // );
 
-    final json = jsonDecode(contents);
-    return AppConfig(
-        androidSiteKey: json['androidSiteKey'], iosSiteKey: json['iosSiteKey']);
+    //final json = jsonDecode(contents);
+    // return AppConfig(
+    //   androidSiteKey: json['androidSiteKey'],
+    //   iosSiteKey: json['iosSiteKey'],
+    // );
+
+     return const AppConfig(
+      androidSiteKey: '6Ld5l2AkAAAAAGGYbyfHGRXSyaqyjpASGMV4xaR2',
+      iosSiteKey: '6LcJR1YkAAAAABdAHmtTCj_ldtr92Jf7DaNgDyBK',
+    );
   }
 }

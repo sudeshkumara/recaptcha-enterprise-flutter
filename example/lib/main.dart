@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter/services.dart';
@@ -40,7 +42,7 @@ class _MyAppState extends State<MyApp> {
   String _clientState = "NOT INITIALIZED";
   String _token = "NO TOKEN";
 
-  final _recaptchaEnterprisePlugin = RecaptchaEnterprise();
+  //final _recaptchaEnterprisePlugin = RecaptchaEnterprise();
 
   void initClient() async {
     String siteKey = Platform.isAndroid
@@ -53,10 +55,10 @@ class _MyAppState extends State<MyApp> {
     try {
       result = await RecaptchaEnterprise.initClient(siteKey);
     } on PlatformException catch (err) {
-      print('Caught platform exception on init: $err');
+      log('Caught platform exception on init: $err');
       errorMessage = 'Code: ${err.code} Message ${err.message}';
     } catch (err) {
-      print('Caught exception on init: $err');
+      log('Caught exception on init: $err');
       errorMessage = err.toString();
     }
 
@@ -71,10 +73,10 @@ class _MyAppState extends State<MyApp> {
     try {
       result = await RecaptchaEnterprise.execute("LOGIN");
     } on PlatformException catch (err) {
-      print('Caught platform exception on execute: $err');
+      log('Caught platform exception on execute: $err');
       result = 'Code: ${err.code} Message ${err.message}';
     } catch (err) {
-      print('Caught exception on execute: $err');
+      log('Caught exception on execute: $err');
       result = err.toString();
     }
 
@@ -93,19 +95,19 @@ class _MyAppState extends State<MyApp> {
       body: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-            Text('reCAPTCHA Client:\n '),
-            Text(_clientState, key: Key('clientState')),
+            const Text('reCAPTCHA Client:\n '),
+            Text(_clientState, key: const Key('clientState')),
           ]),
         ]),
         Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          Text('reCAPTCHA Token:\n '),
+          const Text('reCAPTCHA Token:\n '),
           SizedBox(
             width: 300,
             child: Text(_token,
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 12,
-                key: Key('token')),
+                key: const Key('token')),
           ),
         ]),
         Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
@@ -113,7 +115,7 @@ class _MyAppState extends State<MyApp> {
             onPressed: () {
               initClient();
             },
-            key: Key('initButton'),
+            key: const Key('initButton'),
             child: Container(
               color: Colors.green,
               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
@@ -127,7 +129,7 @@ class _MyAppState extends State<MyApp> {
             onPressed: () {
               execute();
             },
-            key: Key('executeButton'),
+            key: const Key('executeButton'),
             child: Container(
               color: Colors.green,
               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
